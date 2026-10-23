@@ -25,6 +25,7 @@ Cancelled and returned orders are counted in gross revenue but excluded from ful
 
 Takes 12,180 raw, genuinely messy order rows — five different date formats, 20 spellings of 6 payment methods, 24 spellings of 7 countries, 180 exact duplicates — and turns them into a clean star-schema warehouse in SQLite, then answers 11 business questions against it with SQL alone.
 
+```text
 sql-project/
 ├── messy_data.csv        # raw orders export (source, untouched)
 ├── ad_spend.csv           # raw daily ad spend by category (source, untouched)
@@ -35,6 +36,7 @@ sql-project/
 ├── query_results.md             # full output of every query
 ├── ecommerce.db                  # the built warehouse (tracked)
 └── requirements.txt
+```
 
 ## Data quality issues handled in the ETL
 
@@ -50,6 +52,7 @@ sql-project/
 
 Star schema: one grain-of-transaction fact table, one marketing fact table, three conformed dimensions so both facts join cleanly on `date_id`.
 
+```mermaid
 erDiagram
     dim_customers ||--o{ fact_orders : places
     dim_products  ||--o{ fact_orders : contains
@@ -89,7 +92,7 @@ erDiagram
         string category
         real ad_spend_usd
     }
-
+```
 
 ## Business questions answered
 
@@ -110,7 +113,6 @@ erDiagram
 **Headline KPIs** — 12,000 clean orders, $1.39M total revenue, $767K fulfilled, $116 AOV, 18.4% cancel/return rate.
 
 **RFM segments**
-*(Note: Update these numbers after you push the fixed `NTILE` query)*
 
 | Segment | Customers | Avg value | Avg recency (days) |
 |---|---|---|---|
@@ -130,9 +132,11 @@ Full output for all 11 queries — every row, not just the highlights — is in 
 
 ## Run it yourself
 
+```bash
 pip install -r requirements.txt
 python3 etl.py            # rebuilds ecommerce.db from the raw CSVs
 python3 run_queries.py    # runs all 11 queries, regenerates query_results.md
+```
 
 Or open `ecommerce.db` directly in any SQLite browser (e.g. DB Browser for SQLite) and run `queries.sql` query-by-query.
 
