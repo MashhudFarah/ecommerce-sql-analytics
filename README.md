@@ -4,10 +4,20 @@
 ![SQLite](https://img.shields.io/badge/database-SQLite-003B57.svg)
 ![SQL](https://img.shields.io/badge/SQL-CTEs%20%7C%20Window%20Functions-green.svg)
 
-Companion project to [Data-Analysis-Projects](../Data-Analysis-Projects) — that repo covers the
-pandas/Excel side of this same e-commerce dataset. This one adds the layer most job specs ask
-for first: a proper relational schema and hand-written analytical SQL (JOINs, CTEs, window
-functions) answering real business questions, not just `SELECT *`.
+> **Companion project:** [E-commerce Sales & Ad Spend Dashboard](https://github.com/MashhudFarah/ecommerce-sales-analytics) — same sample dataset, cleaned and visualized in Excel and Streamlit.
+
+## Definitions
+
+This project and the companion dashboard project analyze the same sample e-commerce dataset. 
+
+- **Gross revenue** — sum of `revenue_usd` across all orders, including cancelled and returned. Total: **$1.39M**.
+- **Fulfilled revenue** — sum of `revenue_usd` where `order_status = 'Delivered'`. Excludes cancelled and returned orders. Total: **$767K**.
+- **Lost revenue** — sum of `revenue_usd` for cancelled and returned orders. Total: **$252K**.
+- **Ad spend** — total advertising cost from the sample ad-spend file (~$375K).
+- **ROAS** — fulfilled revenue ÷ ad spend. Uses fulfilled revenue so cancelled orders do not inflate return on ad spend.
+- **Revenue after ad spend** — fulfilled revenue − ad spend (~$392K on the sample). This is **not profit**; it excludes cost of goods, shipping, and platform fees.
+
+Cancelled and returned orders are counted in gross revenue but excluded from fulfilled revenue, ROAS, cohort retention, RFM, and repeat-purchase metrics.
 
 ## 🚀 What it does
 
