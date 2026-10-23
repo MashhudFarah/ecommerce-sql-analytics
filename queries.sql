@@ -109,7 +109,7 @@ scored AS (
         CAST(julianday((SELECT MAX(date_id) FROM fact_orders)) - julianday(last_order_date) AS INT) AS recency_days,
         frequency,
         ROUND(monetary, 2) AS monetary,
-        NTILE(4) OVER (ORDER BY julianday(last_order_date) DESC) AS r_score,  -- 4 = most recent
+        NTILE(4) OVER (ORDER BY julianday(last_order_date) ASC) AS r_score,  -- 4 = most recent
         NTILE(4) OVER (ORDER BY frequency ASC)                   AS f_score,
         NTILE(4) OVER (ORDER BY monetary ASC)                    AS m_score
     FROM customer_orders
