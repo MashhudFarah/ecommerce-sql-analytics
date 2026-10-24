@@ -113,11 +113,15 @@ AOV, 18.4% cancel/return rate.
 
 | Segment | Customers | Avg value | Avg recency (days) |
 |---|---|---|---|
-| Champions | 484 | $413.57 | ~50 |
-| At Risk (high value) | 783 | $479.97 | ~115 |
+| Champions | 782 | $480.26 | ~115 |
+| At Risk (high value) | 485 | $413.25 | ~441 |
 | Needs Attention | 209 | $122.23 | ~212 |
-| Lost / Churned | 549 | $114.24 | ~441 |
-| New / Promising | 929 | $110.71 | ~560 |
+| New / Promising | 548 | $114.37 | ~126 |
+| Lost / Churned | 930 | $110.64 | ~560 |
+
+The 485 high-value customers in "At Risk" haven't ordered for about 14 months on
+average — the first list a win-back campaign would start from. On synthetic data
+the segments are a demonstration of the method, not a finding.
 
 **Category ROAS** — Electronics 2.35x, Grocery 1.72x. Full ranking in
 `query_results.md`.
@@ -127,8 +131,8 @@ flattens. The repeat purchase rate is 66.8%, so people do come back — just not
 within 30 days. Whether that's a problem depends on the email and remarketing
 cadence, which this dataset can't tell you.
 
-**Country** — Australia leads on revenue at $367.8K. The US has the lowest
-cancel/return rate at 17.6%, on the smallest volume.
+**Country** — Australia leads on revenue at $367.8K. Germany has the lowest
+cancel/return rate at 17.1%. The US is next at 17.6%, on the smallest volume.
 
 Full output for all eleven queries is in [`query_results.md`](query_results.md).
 
@@ -170,11 +174,16 @@ this README.
 
 ## Definitions
 
-Same definitions as the dashboard repo, so the two agree.
+The dashboard repo is looser: it counts shipped and pending orders as
+fulfilled, which gives $1.15M and an average ROAS of 2.94x. This repo counts
+only delivered orders, so its numbers are lower. Same data, different
+definition.
 
 - **Gross revenue** — every order including cancelled and returned. $1.39M.
 - **Fulfilled revenue** — only `order_status = 'Delivered'`. $767K.
 - **Lost revenue** — cancelled and returned. $252K.
+- **Shipped and pending** — about $373K. In gross revenue, but in neither
+  fulfilled nor lost.
 - **Ad spend** — from the sample ad-spend file. ~$375K.
 - **ROAS** — fulfilled revenue divided by ad spend, so cancellations don't
   inflate it.
@@ -183,4 +192,3 @@ Same definitions as the dashboard repo, so the two agree.
 
 Cancelled and returned orders count in gross revenue but are excluded from
 fulfilled revenue, ROAS, cohort retention, RFM and repeat-purchase metrics.
-2. **Re-run `run_queries.py` and diff the output against `query_results.md`.** You told me earlier the numbers came from a summary, and the plan flagged this. Any number in this README that isn't in the regenerated `query_results.md` should come out.
