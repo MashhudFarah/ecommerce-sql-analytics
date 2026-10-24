@@ -91,11 +91,11 @@
 
 | rfm_segment          |   customers |   avg_monetary_usd |   avg_recency_days |
 |:---------------------|------------:|-------------------:|-------------------:|
-| At Risk (high value) |         783 |             479.97 |             115.40 |
-| Champions            |         484 |             413.57 |             441.10 |
+| Champions            |         782 |             480.26 |             115.20 |
+| At Risk (high value) |         485 |             413.25 |             440.70 |
 | Needs Attention      |         209 |             122.23 |             212.20 |
-| Lost / Churned       |         549 |             114.24 |             126.10 |
-| New / Promising      |         929 |             110.71 |             560.30 |
+| New / Promising      |         548 |             114.37 |             125.80 |
+| Lost / Churned       |         930 |             110.64 |             560.00 |
 
 **6. Monthly cohort retention**
 
